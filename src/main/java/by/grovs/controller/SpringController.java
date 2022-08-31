@@ -1,7 +1,7 @@
 package by.grovs.controller;
 
 import by.grovs.SpringConfig;
-import by.grovs.controller.spring_command.SpringCommand;
+import by.grovs.controller.command.SpringCommand;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.io.IOException;
 
-@WebServlet("/spring-book-store")
+@WebServlet("/book-store")
 public class SpringController extends HttpServlet {
 
     private AnnotationConfigApplicationContext context;
