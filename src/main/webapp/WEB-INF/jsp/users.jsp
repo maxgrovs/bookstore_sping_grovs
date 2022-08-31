@@ -1,4 +1,4 @@
-<%@ page import="by.grovs._4_entity.User" %>
+<%@ page import="by.grovs.entity.User" %>
 <%@ page import="java.util.List" %>
 
 <%--

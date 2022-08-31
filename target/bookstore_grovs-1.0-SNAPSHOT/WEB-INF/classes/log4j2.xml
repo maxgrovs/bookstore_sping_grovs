@@ -22,7 +22,7 @@
                         <AppenderRef ref="Console"/>
         </Root>
 
-        <Logger name="by.grovs._5_dao.BookDaoImpl" level="debug">
+        <Logger name="by.grovs.dao.BookDaoImpl" level="debug">
             <AppenderRef ref="TxtFile"/>
             <AppenderRef ref="Console"/>
         </Logger>

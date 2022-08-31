@@ -1,7 +1,7 @@
 package by.grovs.controller.command.impl;
 
-import by.grovs._3_service.impl.BookServiceImpl;
-import by.grovs._4_entity.Book;
+import by.grovs.service.impl.BookServiceImpl;
+import by.grovs.entity.Book;
 import by.grovs.controller.command.Command;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,5 +19,8 @@ public class BookCommand implements Command {
 
         request.setAttribute("book", book);
         request.getRequestDispatcher("WEB-INF/jsp/one-book.jsp").forward(request, response);
+
+
+
     }
 }

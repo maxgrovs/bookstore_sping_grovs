@@ -1,5 +1,5 @@
-<jsp:useBean id="book" scope="request" type="by.grovs._4_entity.Book"/>
-<%@ page import="by.grovs._4_entity.Book" %>
+<jsp:useBean id="book" scope="request" type="by.grovs.entity.Book"/>
+<%@ page import="by.grovs.entity.Book" %>
 <%@ page import="java.util.List" %>
 
 <%--
