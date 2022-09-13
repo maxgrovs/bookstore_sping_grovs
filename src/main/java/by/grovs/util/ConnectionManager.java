@@ -1,7 +1,5 @@
 package by.grovs.util;
 
-import by.grovs._5_dao.impl.BookDaoImpl;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

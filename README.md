@@ -2,6 +2,6 @@
 
 #module1_config_annotation
 
-- [ ] add to app Spring Framework 
-- [ ] configure by Java-based and Annotation-based configurations
+- [x] add to app Spring Framework 
+- [x] configure by Java-based and Annotation-based configurations
 

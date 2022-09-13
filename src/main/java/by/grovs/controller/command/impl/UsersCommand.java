@@ -1,25 +1,35 @@
 package by.grovs.controller.command.impl;
 
-import by.grovs._3_service.impl.BookServiceImpl;
-import by.grovs._3_service.impl.UserServiceImpl;
-import by.grovs._4_entity.Book;
-import by.grovs._4_entity.User;
-import by.grovs.controller.command.Command;
+
+import by.grovs.controller.command.SpringCommand;
+import by.grovs.entity.User;
+import by.grovs.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
 
-public class UsersCommand implements Command {
+@Component("users")
+public class UsersCommand implements SpringCommand {
+
+    private final UserService userService;
+
+    @Autowired
+    public UsersCommand(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String execute(HttpServletRequest request) throws ServletException, IOException {
 
-        List<User> users = UserServiceImpl.getInstance().getAll();
+        List<User> users = userService.getAll();
 
         request.setAttribute("users", users);
-        request.getRequestDispatcher("WEB-INF/jsp/users.jsp").forward(request, response);
+
+        return "WEB-INF/jsp/users.jsp";
+
     }
 }
