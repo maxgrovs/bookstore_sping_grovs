@@ -1,25 +1,30 @@
 package by.grovs.controller.command.impl;
 
-import by.grovs.service.impl.BookServiceImpl;
+import by.grovs.controller.command.SpringCommand;
 import by.grovs.entity.Book;
-import by.grovs.controller.command.Command;
-import jakarta.servlet.ServletException;
+import by.grovs.service.BookService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import org.springframework.stereotype.Component;
 
-public class BookCommand implements Command {
+
+@Component("book")
+public class BookCommand implements SpringCommand {
+
+    private final BookService bookService;
+
+    public BookCommand(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String execute(HttpServletRequest request) {
 
-        Long id = Long.valueOf(request.getParameter("id"));
 
-        Book book = BookServiceImpl.getInstance().getById(id);
-
+        Long id = Long.parseLong(request.getParameter("id"));
+        Book book = bookService.getById(id);
         request.setAttribute("book", book);
-        request.getRequestDispatcher("WEB-INF/jsp/one-book.jsp").forward(request, response);
 
+        return "WEB-INF/jsp/one-book.jsp";
 
 
     }

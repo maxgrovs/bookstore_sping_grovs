@@ -3,7 +3,7 @@ package by.grovs.service.impl;
 import by.grovs.service.BookService;
 import by.grovs.entity.Book;
 import by.grovs.dao.BookDao;
-import by.grovs.dao.impl.BookDaoImpl;
+import by.grovs.dao.impl.book.BookDaoImpl;
 import java.math.BigDecimal;
 import java.util.List;
 

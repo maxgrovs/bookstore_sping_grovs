@@ -1,24 +1,33 @@
 package by.grovs.controller.command.impl;
 
-import by.grovs.service.impl.UserServiceImpl;
+import by.grovs.controller.command.SpringCommand;
 import by.grovs.entity.User;
-import by.grovs.controller.command.Command;
-import jakarta.servlet.ServletException;
+import by.grovs.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 
-public class UserCommand implements Command {
+@Component("user")
+public class UserCommand implements SpringCommand {
+
+    private final UserService userService;
+
+    @Autowired
+    public UserCommand(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String execute(HttpServletRequest request) {
 
-        Long id = Long.valueOf(request.getParameter("id"));
 
-        User user = UserServiceImpl.getInstance().getById(id);
-
+        Long id = Long.parseLong(request.getParameter("id"));
+        User user = userService.getById(id);
         request.setAttribute("user", user);
-        request.getRequestDispatcher("WEB-INF/jsp/one-user.jsp").forward(request, response);
+
+        return "WEB-INF/jsp/one-user.jsp";
+
+
     }
 }
