@@ -115,7 +115,7 @@ public class BookDaoSpringImpl implements BookDao {
         book.setAuthor(rs.getString("author"));
         book.setIsbn(rs.getString("isbn"));
         book.setDate((rs.getDate("date")).toLocalDate());
-      //  book.setCost(rs.getBigDecimal("cost"));
+        book.setCost(rs.getBigDecimal("cost"));
 
         return book;
     }

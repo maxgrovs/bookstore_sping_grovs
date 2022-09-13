@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 
-@Component("update-book-form")
+@Component("update_book_form")
 public class UpdateBookFormCommand implements SpringCommand {
 
     private final BookService bookService;

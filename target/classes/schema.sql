@@ -1,3 +1,5 @@
+CREATE DATABASE Bookstore_bh;
+
 --drop table books;
 --drop table users;
 --drop table role;
@@ -8,7 +10,8 @@ CREATE TABLE IF NOT EXISTS books
     name   VARCHAR(64) NOT NULL UNIQUE,
     author VARCHAR(64),
     isbn   VARCHAR(17),
-    date   date
+    date   DATE,
+    cost NUMERIC
 );
 
 CREATE TABLE IF NOT EXISTS role

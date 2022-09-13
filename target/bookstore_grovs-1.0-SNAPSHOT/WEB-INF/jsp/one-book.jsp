@@ -64,7 +64,7 @@
 
 </table>
 
-<a href="book-store?command=update_book_form&id=${requestScope.user.id}">Edit</a>
+<a href="book-store?command=update_book_form&id=${book.id}">Edit</a>
 
 </body>
 </html>
