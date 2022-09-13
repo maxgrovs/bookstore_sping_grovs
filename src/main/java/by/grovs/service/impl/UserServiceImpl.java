@@ -2,7 +2,7 @@ package by.grovs.service.impl;
 import by.grovs.service.UserService;
 import by.grovs.entity.User;
 import by.grovs.dao.UserDao;
-import by.grovs.dao.impl.UserDaoImpl;
+import by.grovs.dao.impl.user.UserDaoImpl;
 
 import java.util.List;
 

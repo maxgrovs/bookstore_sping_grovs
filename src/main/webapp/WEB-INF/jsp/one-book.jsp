@@ -63,5 +63,8 @@
 
 
 </table>
+
+<a href="book-store?command=update_book_form&id=${requestScope.user.id}">Edit</a>
+
 </body>
 </html>
