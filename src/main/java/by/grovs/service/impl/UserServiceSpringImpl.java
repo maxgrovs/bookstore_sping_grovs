@@ -35,7 +35,7 @@ public class UserServiceSpringImpl implements UserService {
 
     @Override
     public User editUser(User user) {
-        return null;
+        return dao.update(user);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package by.grovs.dao.impl.user;
 
 import by.grovs.dao.UserDao;
+import by.grovs.entity.Book;
 import by.grovs.entity.User;
 import by.grovs.service.Util;
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +21,8 @@ public class UserDaoSpringImpl implements UserDao {
 
     public static final String FIND_ALL = "SELECT * FROM users";
     public static final String FIND_ONE = "SELECT id, first_name, last_name, password FROM users WHERE id = ?";
+    public static final String UPDATE_USER = "UPDATE users SET first_name = ? WHERE id = ?";
+
 
     private final Util util = Util.getInstance();
 
@@ -27,6 +30,11 @@ public class UserDaoSpringImpl implements UserDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
+    @Override
+    public User addUser(User user) {
+        return null;
+    }
 
     //read all
     @Override
@@ -39,6 +47,21 @@ public class UserDaoSpringImpl implements UserDao {
     public User getById(Long id) {
 
         return jdbcTemplate.queryForObject(FIND_ONE, this::getUser, id);
+    }
+
+    public User update(User user) {
+
+        jdbcTemplate.update(UPDATE_USER, ps -> {
+            ps.setString(1, user.getFirstName());
+            ps.setLong(2, user.getId());
+        });
+        return getById(user.getId());
+
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return false;
     }
 
     private User getUser(ResultSet resultSet, int rawNum) {

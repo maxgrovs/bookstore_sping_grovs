@@ -5,8 +5,8 @@
 - ###add Spring JDBC (JdbcTemplate) to Dao layout
 - ###implement CRUD for User and Book entity:
   + [ ] create
-  + [ ] read
-  + [ ] update
+  + [x] read
+  + [x] update
   + [ ] delete
     
                        
