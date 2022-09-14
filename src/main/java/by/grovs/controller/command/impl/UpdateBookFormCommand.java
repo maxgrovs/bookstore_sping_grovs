@@ -25,9 +25,7 @@ public class UpdateBookFormCommand implements SpringCommand {
 
         request.setAttribute("book", book);
 
-
         return "WEB-INF/jsp/update-book-form.jsp";
-
 
     }
 }

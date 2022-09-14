@@ -51,7 +51,7 @@ public class BookDaoSpringImpl implements BookDao {
         jdbcTemplate.update(con -> {
             PreparedStatement ps = con.prepareStatement(ADD_BOOK);
             ps.setString(1, book.getName());
-            ps.setString(1, book.getAuthor());
+            ps.setString(2, book.getAuthor());
             ps.setString(3, isbn);
             ps.setDate(4, Date.valueOf(date));
             return ps;
@@ -62,7 +62,6 @@ public class BookDaoSpringImpl implements BookDao {
                 .longValue();
 
         return getById(id);
-
     }
 
 
