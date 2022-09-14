@@ -12,6 +12,7 @@ public class UpdateBookCommand implements SpringCommand {
 
     private final BookService bookService;
 
+
     public UpdateBookCommand(BookService bookService) {
         this.bookService = bookService;
     }

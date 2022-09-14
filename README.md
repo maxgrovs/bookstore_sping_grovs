@@ -1,7 +1,12 @@
 #Bookstore by Grovs
 
-#module1_config_annotation
+#module2_jdbc_template
 
-- [x] add to app Spring Framework 
-- [x] configure by Java-based and Annotation-based configurations
-
+- ###add Spring JDBC (JdbcTemplate) to Dao layout
+- ###implement CRUD for User and Book entity:
+  + [ ] create
+  + [x] read
+  + [x] update
+  + [ ] delete
+    
+                       
