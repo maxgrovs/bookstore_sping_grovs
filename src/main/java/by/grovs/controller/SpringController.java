@@ -36,9 +36,13 @@ public class SpringController extends HttpServlet {
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String action = req.getParameter("command");
-        SpringCommand command = (SpringCommand) context.getBean(action);
-        String page = command.execute(req);
-        req.getRequestDispatcher(page).forward(req, resp);
+
+        if (action != null) {
+            SpringCommand command = (SpringCommand) context.getBean(action);
+            String page = command.execute(req);
+            req.getRequestDispatcher(page).forward(req, resp);
+        } else req.getRequestDispatcher("WEB-INF/jsp/main.jsp").forward(req, resp);
+
 
     }
 
