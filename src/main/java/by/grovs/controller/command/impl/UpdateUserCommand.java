@@ -22,10 +22,10 @@ public class UpdateUserCommand implements SpringCommand {
 
 
         Long id = Long.parseLong(request.getParameter("id"));
-        User user = service.getById(id);
+        User user = service.findById(id);
         user.setFirstName(request.getParameter("name"));
 
-        User updated = service.editUser(user);
+        User updated = service.update(user);
         request.setAttribute("user", updated);
         request.setAttribute("message", "User has been updated!");
 

@@ -23,7 +23,7 @@ public class UserCommand implements SpringCommand {
 
 
         Long id = Long.parseLong(request.getParameter("id"));
-        User user = userService.getById(id);
+        User user = userService.findById(id);
         request.setAttribute("user", user);
 
         return "WEB-INF/jsp/one-user.jsp";

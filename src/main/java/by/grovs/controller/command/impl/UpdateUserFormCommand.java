@@ -21,7 +21,7 @@ public class UpdateUserFormCommand implements SpringCommand {
     public String execute(HttpServletRequest request) {
 
         Long id = Long.parseLong(request.getParameter("id"));
-        User user = userService.getById(id);
+        User user = userService.findById(id);
 
         request.setAttribute("user", user);
 

@@ -25,7 +25,7 @@ public class UsersCommand implements SpringCommand {
     @Override
     public String execute(HttpServletRequest request) throws ServletException, IOException {
 
-        List<User> users = userService.getAll();
+        List<User> users = userService.findAll();
 
         request.setAttribute("users", users);
 
