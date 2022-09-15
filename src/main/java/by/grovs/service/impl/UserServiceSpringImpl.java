@@ -25,12 +25,12 @@ public class UserServiceSpringImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        return dao.getUsers();
+        return dao.findAll();
     }
 
     @Override
     public User getById(Long id) {
-        return dao.getById(id);
+        return dao.findById(id);
     }
 
     @Override
