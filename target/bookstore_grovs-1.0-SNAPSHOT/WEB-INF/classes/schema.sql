@@ -1,8 +1,11 @@
 CREATE DATABASE Bookstore_bh;
 
+--drop table order_items;
+--drop table orders;
 --drop table books;
 --drop table users;
 --drop table role;
+
 
 CREATE TABLE IF NOT EXISTS books
 (
@@ -43,9 +46,9 @@ CREATE TABLE orders
 
 CREATE TABLE order_items
 (
-    id BIGSERIAL PRIMARY KEY,
-    order_id BIGINT REFERENCES orders NOT NULL ,
-    book_id BIGINT REFERENCES  books NOT NULL ,
-    quantity INT2 NOT NULL ,
-    price NUMERIC (6,2) NOT NULL
+    id       BIGSERIAL PRIMARY KEY,
+    order_id BIGINT REFERENCES orders NOT NULL,
+    book_id  BIGINT REFERENCES books  NOT NULL,
+    quantity INT2                     NOT NULL,
+    price    NUMERIC(6, 2)            NOT NULL
 );

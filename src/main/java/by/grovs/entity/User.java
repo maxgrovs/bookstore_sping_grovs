@@ -2,7 +2,6 @@ package by.grovs.entity;
 
 import lombok.Data;
 
-import java.util.Objects;
 
 @Data
 public class User {
@@ -32,5 +31,11 @@ public class User {
         this.password = password;
     }
 
+
+    public enum Role {
+
+        Admin, Manager, Customer
+
+    }
 
 }

@@ -7,13 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 
-@Component("update_book")
-public class UpdateBookCommand implements SpringCommand {
+@Component("delete_book")
+public class DeleteBookCommand implements SpringCommand {
 
     private final BookService bookService;
 
 
-    public UpdateBookCommand(BookService bookService) {
+    public DeleteBookCommand(BookService bookService) {
         this.bookService = bookService;
     }
 
@@ -22,14 +22,11 @@ public class UpdateBookCommand implements SpringCommand {
 
 
         Long id = Long.parseLong(request.getParameter("id"));
-        Book book = bookService.getById(id);
-        book.setName(request.getParameter("name"));
 
-        Book updated = bookService.editBook(book);
-        request.setAttribute("book", updated);
-        request.setAttribute("message", "User has been updated!");
+        bookService.delete(id);
+        request.setAttribute("message", "Book has been deleted!");
 
-        return "WEB-INF/jsp/one-book.jsp";
+        return "WEB-INF/jsp/main.jsp";
 
 
     }

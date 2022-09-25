@@ -2,29 +2,27 @@ package by.grovs.controller.command.impl;
 
 import by.grovs.controller.command.SpringCommand;
 import by.grovs.entity.Book;
-import by.grovs.service.BookService;
+import by.grovs.entity.Order;
+import by.grovs.service.OrderService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+@RequiredArgsConstructor
+@Component("order")
+public class OrderCommand implements SpringCommand {
 
-@Component("book")
-public class BookCommand implements SpringCommand {
-
-    private final BookService bookService;
-
-    public BookCommand(BookService bookService) {
-        this.bookService = bookService;
-    }
+    private final OrderService orderService;
 
     @Override
     public String execute(HttpServletRequest request) {
 
 
         Long id = Long.parseLong(request.getParameter("id"));
-        Book book = bookService.getById(id);
-        request.setAttribute("book", book);
+        Order order = orderService.findById(id);
+        request.setAttribute("order", order);
 
-        return "WEB-INF/jsp/one-book.jsp";
+        return "WEB-INF/jsp/one-order.jsp";
 
 
     }

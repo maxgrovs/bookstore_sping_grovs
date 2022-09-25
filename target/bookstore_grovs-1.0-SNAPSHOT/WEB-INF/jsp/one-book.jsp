@@ -56,6 +56,7 @@
 </table>
 
 <a href="book-store?command=update_book_form&id=${book.id}">Edit</a>
+<a href="book-store?command=delete_book&id=${book.id}">Delete</a>
 
 </body>
 </html>

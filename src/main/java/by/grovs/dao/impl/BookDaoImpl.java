@@ -21,6 +21,7 @@ public class BookDaoImpl implements BookDao {
 
     private static final Logger log = LogManager.getLogger(BookDaoImpl.class);
 
+
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -37,7 +38,7 @@ public class BookDaoImpl implements BookDao {
     public static final String FIND_ALL_BY_AUTHOR = "SELECT * FROM books WHERE author = ?";
     public static final String UPDATE_BOOKS = "UPDATE books SET name = ? WHERE id = ?";
     public static final String INSERT_BOOKS = "INSERT INTO books (name, author, isbn, date ) VALUES ?, ?, ?, ?";
-
+    public static final String DELETE_BOOK = "UPDATE books SET deleted = true WHERE id = ?";
 
     private final Util util = Util.getInstance();
 
@@ -92,7 +93,11 @@ public class BookDaoImpl implements BookDao {
 
     public boolean delete(Long id) {
 
-        return false;
+        jdbcTemplate.update(DELETE_BOOK, ps -> {
+           ps.setLong(1, id);
+        });
+
+        return true;
 
     }
 
