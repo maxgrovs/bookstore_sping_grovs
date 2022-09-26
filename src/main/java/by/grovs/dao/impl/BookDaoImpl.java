@@ -31,8 +31,8 @@ public class BookDaoImpl implements BookDao {
     }
 
 
-    public static final String ADD_BOOK = "INSERT INTO books (name, author, isbn, date )" +
-            "VALUES (?, ?, ?, ?)";
+    public static final String ADD_BOOK = "INSERT INTO books (name, author, isbn, date, cost )" +
+            "VALUES (?, ?, ?, ?, ?)";
     public static final String FIND_ALL = "SELECT * FROM books";
     public static final String FIND_ONE = "SELECT id, name, author, isbn, date, cost FROM books WHERE id = ?";
     public static final String FIND_ONE_BY_ISBN = "SELECT * FROM books WHERE isbn = ?";
@@ -44,24 +44,26 @@ public class BookDaoImpl implements BookDao {
 
     public Book addBook(Book book) {
 
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+       KeyHolder keyHolder = new GeneratedKeyHolder();
 
         String isbn = util.getIsbn();
         LocalDate date = util.getRandomDateOfPublication();
         BigDecimal cost = util.getRandomCost(BigDecimal.valueOf(1), BigDecimal.valueOf(1000));
 
         jdbcTemplate.update(con -> {
-            PreparedStatement ps = con.prepareStatement(ADD_BOOK);
+            PreparedStatement ps = con.prepareStatement(ADD_BOOK, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, book.getName());
             ps.setString(2, book.getAuthor());
             ps.setString(3, isbn);
             ps.setDate(4, Date.valueOf(date));
+            ps.setBigDecimal(5, cost);
             return ps;
         }, keyHolder);
 
-        Long id = Optional.ofNullable(keyHolder.getKey())
-                .orElseThrow(() -> new RuntimeException("Can't create book"))
-                .longValue();
+        System.out.println();
+
+        Long id = (Long) Optional.ofNullable(keyHolder.getKeys().get("id"))
+                .orElseThrow(() -> new RuntimeException("Can't create book"));
 
         return getById(id);
     }
