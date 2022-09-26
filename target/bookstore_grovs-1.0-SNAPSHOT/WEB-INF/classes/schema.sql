@@ -1,10 +1,9 @@
 CREATE DATABASE Bookstore_bh;
 
+--drop table books;
 --drop table order_items;
 --drop table orders;
---drop table books;
 --drop table users;
---drop table role;
 
 
 CREATE TABLE IF NOT EXISTS books
@@ -18,19 +17,13 @@ CREATE TABLE IF NOT EXISTS books
     deleted BOOLEAN     NOT NULL DEFAULT FALSE
 );
 
-CREATE TABLE IF NOT EXISTS role
-(
-    id   BIGSERIAL   NOT NULL PRIMARY KEY,
-    role VARCHAR(32) NOT NULL UNIQUE
-);
-
 
 CREATE TABLE IF NOT EXISTS users
 (
     id         BIGSERIAL   NOT NULL PRIMARY KEY,
     first_name VARCHAR(64) NOT NULL UNIQUE,
     last_name  VARCHAR(64),
-    role_id    BIGINT      NOT NULL REFERENCES role,
+    role       VARCHAR(64),
     password   VARCHAR(16),
     deleted    BOOLEAN     NOT NULL DEFAULT FALSE
 
@@ -41,7 +34,8 @@ CREATE TABLE orders
     id         BIGSERIAL PRIMARY KEY,
     status     VARCHAR(128)            NOT NULL,
     user_id    BIGINT REFERENCES users NOT NULL,
-    total_cost NUMERIC(8, 2)           NOT NULL
+    total_cost NUMERIC(8, 2)           NOT NULL,
+    deleted    BOOLEAN     NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE order_items

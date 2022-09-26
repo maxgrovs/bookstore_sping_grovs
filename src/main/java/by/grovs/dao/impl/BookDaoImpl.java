@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -37,7 +38,6 @@ public class BookDaoImpl implements BookDao {
     public static final String FIND_ONE_BY_ISBN = "SELECT * FROM books WHERE isbn = ?";
     public static final String FIND_ALL_BY_AUTHOR = "SELECT * FROM books WHERE author = ?";
     public static final String UPDATE_BOOKS = "UPDATE books SET name = ? WHERE id = ?";
-    public static final String INSERT_BOOKS = "INSERT INTO books (name, author, isbn, date ) VALUES ?, ?, ?, ?";
     public static final String DELETE_BOOK = "UPDATE books SET deleted = true WHERE id = ?";
 
     private final Util util = Util.getInstance();
@@ -48,6 +48,7 @@ public class BookDaoImpl implements BookDao {
 
         String isbn = util.getIsbn();
         LocalDate date = util.getRandomDateOfPublication();
+        BigDecimal cost = util.getRandomCost(BigDecimal.valueOf(1), BigDecimal.valueOf(1000));
 
         jdbcTemplate.update(con -> {
             PreparedStatement ps = con.prepareStatement(ADD_BOOK);

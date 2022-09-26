@@ -31,12 +31,16 @@
     </style>
 </head>
 
+
+
 <%--/book-store?command=update-book&id=5&name=Valera--%>
 
 <body>
-<form method="post" action="book-store">
+<form method="post" action="book-store">                        --post -> for add, update\\\
 
-    <input type="hidden" name="command" value="update_book">
+                                                                --all input fields are parameters
+
+    <input type="hidden" name="command" value="update_book">    --input - field for input\\\
     <input type="hidden" name="id" value="${requestScope.book.id}">
     <label for="input-name">Name: </label>
     <input id="input-name" type="text" name="name" value="${requestScope.book.name}">

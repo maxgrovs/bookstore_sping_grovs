@@ -22,12 +22,8 @@ VALUES ('Onegin', 'A. Pushkin', '798-5-15825-119-2', '2002-10-20', 6),
        ('Dracula', 'Bram Stoker', '798-5-99074-378-2', '1953-12-18', 1000),
        ('war and peace', 'Lev Tolstoy', '798-5-53716-255-2', '2004-01-22', 400);
 
-INSERT INTO role (role)
-VALUES ('Admin'),
-       ('Manager'),
-       ('Customer');
 
-INSERT INTO public.users (first_name, last_name, role_id, password)
-VALUES ('Sveta', 'Ivanova', 1, '1'),
-       ('Jhon', 'Dou', 2, '2'),
-       ('Ivan', 'Bezdomniy', 3, '3');
+INSERT INTO public.users (first_name, last_name, role, password)
+VALUES ('Sveta', 'Ivanova', 'ADMIN', '111'),
+       ('Jhon', 'Dou', 'MANAGER', '222'),
+       ('Ivan', 'Bezdomniy', 'CUSTOMER', '333');
