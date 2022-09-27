@@ -34,8 +34,8 @@ CREATE TABLE orders
     id         BIGSERIAL PRIMARY KEY,
     status     VARCHAR(128)            NOT NULL,
     user_id    BIGINT REFERENCES users NOT NULL,
-    total_cost NUMERIC(8, 2)           NOT NULL,
-    deleted    BOOLEAN     NOT NULL DEFAULT FALSE
+    total_cost NUMERIC(8, 2),
+    deleted    BOOLEAN                 NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE order_items
@@ -44,5 +44,5 @@ CREATE TABLE order_items
     order_id BIGINT REFERENCES orders NOT NULL,
     book_id  BIGINT REFERENCES books  NOT NULL,
     quantity INT2                     NOT NULL,
-    price    NUMERIC(6, 2)            NOT NULL
+    price    NUMERIC(6, 2)
 );

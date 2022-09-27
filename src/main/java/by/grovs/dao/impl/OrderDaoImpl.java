@@ -3,6 +3,7 @@ package by.grovs.dao.impl;
 import by.grovs.dao.OrderDao;
 import by.grovs.dao.OrderItemDao;
 import by.grovs.dao.UserDao;
+import by.grovs.entity.Book;
 import by.grovs.entity.Order;
 import by.grovs.entity.OrderItem;
 import by.grovs.entity.User;
@@ -50,6 +51,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> findAll() {
+
         return null;
     }
 
@@ -67,4 +69,19 @@ public class OrderDaoImpl implements OrderDao {
     public boolean delete(Long id) {
         return false;
     }
+
+
+    public Order getOrder(ResultSet rs, int rowNum) throws SQLException {
+
+        Order order = new Order();
+        order.setId(rs.getLong("id"));
+        order.setStatus(Order.Status.valueOf(rs.getString("status")));
+//        order.setUser(rs.getString("author"));
+//        book.setIsbn(rs.getString("isbn"));
+//        book.setDate((rs.getDate("date")).toLocalDate());
+//        book.setCost(rs.getBigDecimal("cost"));
+
+        return order;
+    }
+
 }

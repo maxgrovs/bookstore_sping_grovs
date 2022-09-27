@@ -17,6 +17,8 @@ public class Order {
 
     public enum Status {
         PENDING, CONFIRMED, DELIVERED, CANCELED
+
+        //в ожидании, подтвержденный, доставлен, отменено
     }
 
 }
