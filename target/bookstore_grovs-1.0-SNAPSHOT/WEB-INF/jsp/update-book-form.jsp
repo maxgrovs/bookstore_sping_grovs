@@ -11,7 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Update User</title>
+    <title>Update Book</title>
     <style>
         table {
             font-family: arial, sans-serif;

@@ -6,22 +6,27 @@ import by.grovs.service.Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserDaoImpl implements UserDao {
 
     private static final Logger log = LogManager.getLogger(UserDaoImpl.class);
+    public static final String DELETE_USER = "UPDATE users SET deleted = true WHERE id = ?";
 
     private final JdbcTemplate jdbcTemplate;
 
-    public static final String FIND_ALL = "SELECT * FROM users";
+    public static final String INSERT_USER = "INSERT INTO users (first_name, last_name, role, password) " +
+            "VALUES (?, ?, ?, ?)";
+    public static final String FIND_ALL = "SELECT * FROM users WHERE deleted = false";
     public static final String FIND_ONE = "SELECT id, first_name, last_name, password FROM users WHERE id = ?";
     public static final String UPDATE_USER = "UPDATE users SET first_name = ? WHERE id = ?";
-
 
     private final Util util = Util.getInstance();
 
@@ -32,17 +37,36 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User create(User user) {
-        return null;
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+
+        jdbcTemplate.update(con -> {
+            PreparedStatement ps = con.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+           // ps.setString(3, user.getRole().name());
+            ps.setString(3, "Admin");
+           // ps.setString(4, user.getPassword());
+            ps.setString(4, "123");
+            return ps;
+        }, keyHolder);
+
+        Long id = (Long) Optional.ofNullable(keyHolder.getKeys().get("id"))
+                .orElseThrow(() -> new RuntimeException("Can't create user"));
+
+        System.out.println();
+
+        return findById(id);
     }
 
-    //read all
+
     @Override
     public List<User> findAll() {
 
         return jdbcTemplate.query(FIND_ALL, this::getUser);
     }
 
-    //Read one
+
     public User findById(Long id) {
 
         return jdbcTemplate.queryForObject(FIND_ONE, this::getUser, id);
@@ -60,7 +84,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean delete(Long id) {
-        return false;
+
+        jdbcTemplate.update(DELETE_USER, ps -> {
+            ps.setLong(1, id);
+        });
+
+        return true;
     }
 
     private User getUser(ResultSet resultSet, int rawNum) {

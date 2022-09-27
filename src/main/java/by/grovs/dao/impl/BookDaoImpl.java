@@ -33,7 +33,7 @@ public class BookDaoImpl implements BookDao {
 
     public static final String ADD_BOOK = "INSERT INTO books (name, author, isbn, date, cost )" +
             "VALUES (?, ?, ?, ?, ?)";
-    public static final String FIND_ALL = "SELECT * FROM books";
+    public static final String FIND_ALL = "SELECT * FROM books WHERE deleted = false";
     public static final String FIND_ONE = "SELECT id, name, author, isbn, date, cost FROM books WHERE id = ?";
     public static final String FIND_ONE_BY_ISBN = "SELECT * FROM books WHERE isbn = ?";
     public static final String FIND_ALL_BY_AUTHOR = "SELECT * FROM books WHERE author = ?";
@@ -59,8 +59,6 @@ public class BookDaoImpl implements BookDao {
             ps.setBigDecimal(5, cost);
             return ps;
         }, keyHolder);
-
-        System.out.println();
 
         Long id = (Long) Optional.ofNullable(keyHolder.getKeys().get("id"))
                 .orElseThrow(() -> new RuntimeException("Can't create book"));

@@ -6,7 +6,7 @@
 
 
 <head>
-    <title>Book List</title>
+    <title>Book</title>
     <style>
         table {
             font-family: arial, sans-serif;

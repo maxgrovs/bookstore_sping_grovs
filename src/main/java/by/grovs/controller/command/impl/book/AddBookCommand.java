@@ -30,7 +30,7 @@ public class AddBookCommand implements SpringCommand {
         request.setAttribute("book", addBook);
         request.setAttribute("message", "Book has been added!");
 
-        return "WEB-INF/jsp/books.jsp";
+        return "WEB-INF/jsp/one-book.jsp";
 
 
     }

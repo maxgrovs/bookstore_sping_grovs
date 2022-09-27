@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public User create(User user) {
-        return null;
+        return dao.create(user);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
-
+        dao.delete(id);
     }
 }
