@@ -19,10 +19,12 @@ import java.util.List;
 @Repository
 public class OrderDaoImpl implements OrderDao {
 
+
     private final UserDao userDao;
     private final OrderItemDao orderItemDao;
     private final JdbcTemplate jdbcTemplate;
 
+    public static final String FIND_ALL = "SELECT * FROM orders WHERE deleted = false";
     private static final String GET_BY_ID =
             "SELECT id, status, total_cost, user_id " +
                     "FROM orders " +
@@ -31,28 +33,16 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Order findById(Long id) {
+
         return jdbcTemplate.queryForObject(GET_BY_ID, this::mapRow, id);
     }
 
-    private Order mapRow(ResultSet resultSet, int i) throws SQLException {
 
-        Order order = new Order();
-        order.setId(resultSet.getLong("id"));
-
-        order.setStatus(Order.Status.valueOf(resultSet.getString("status")));
-        order.setTotalCost(resultSet.getBigDecimal("total_cost"));
-        Long userId = resultSet.getLong("user_id");
-        User user = userDao.findById(userId);
-        order.setUser(user);
-     //   List<OrderItem> items = orderItemDao.findByOrderId(userId);
-       // order.setItems(items);
-        return order;
-    }
 
     @Override
     public List<Order> findAll() {
 
-        return null;
+        return jdbcTemplate.query(FIND_ALL, this::mapRow);
     }
 
     @Override
@@ -70,18 +60,12 @@ public class OrderDaoImpl implements OrderDao {
         return false;
     }
 
-
-    public Order getOrder(ResultSet rs, int rowNum) throws SQLException {
-
+    private Order mapRow(ResultSet rs, int i) throws SQLException {
         Order order = new Order();
         order.setId(rs.getLong("id"));
         order.setStatus(Order.Status.valueOf(rs.getString("status")));
-//        order.setUser(rs.getString("author"));
-//        book.setIsbn(rs.getString("isbn"));
-//        book.setDate((rs.getDate("date")).toLocalDate());
-//        book.setCost(rs.getBigDecimal("cost"));
-
+        order.setUser(userDao.findById(rs.getLong("user_id")));
+        order.setTotalCost(rs.getBigDecimal("total_cost"));
         return order;
     }
-
 }
