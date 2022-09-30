@@ -27,7 +27,8 @@ public class OrderItemDaoImpl implements OrderItemDao {
 
     @Override
     public List<OrderItem> findAll() {
-        return null;
+
+        return jdbcTemplate.query("SELECT * FROM order_items", this::mapRow);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
 
     @Override
     public List<OrderItem> findByOrderId(Long id) {
-        return jdbcTemplate.query("SELECT * FROM users WHERE id = ?", this::mapRow, id);
+        return jdbcTemplate.query("SELECT * FROM order_items WHERE id = ?", this::mapRow, id);
     }
 
     private OrderItem mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -55,6 +56,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
         long book_id = resultSet.getLong("book_id");
         Book book = bookDao.getById(book_id);
         orderItem.setBook(book);
+        orderItem.setQuantity(resultSet.getInt("quantity"));
         return orderItem;
     }
 }

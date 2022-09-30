@@ -54,17 +54,6 @@
     </c:forEach>
 
 
-    <tr>
-        <td>${order.id}</td>
-        <td>${order.user.firstName}</td>
-<%--        <td>${order.items}</td>--%>
-        <td>${order.status.name()}</td>
-
-        <td>
-
-        </td>
-    </tr>
-
 
 </table>
 

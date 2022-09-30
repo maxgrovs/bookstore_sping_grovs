@@ -1,5 +1,6 @@
 package by.grovs.dao.impl;
 
+import by.grovs.dao.BookDao;
 import by.grovs.dao.OrderDao;
 import by.grovs.dao.OrderItemDao;
 import by.grovs.dao.UserDao;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -21,6 +23,7 @@ public class OrderDaoImpl implements OrderDao {
 
 
     private final UserDao userDao;
+    private final BookDao bookDao;
     private final OrderItemDao orderItemDao;
     private final JdbcTemplate jdbcTemplate;
 
@@ -31,6 +34,7 @@ public class OrderDaoImpl implements OrderDao {
                     "WHERE id = ?";
 
 
+
     @Override
     public Order findById(Long id) {
 
@@ -38,11 +42,10 @@ public class OrderDaoImpl implements OrderDao {
     }
 
 
-
     @Override
     public List<Order> findAll() {
 
-        return jdbcTemplate.query(FIND_ALL, this::mapRow);
+            return jdbcTemplate.query(FIND_ALL, this::mapRow);
     }
 
     @Override
@@ -66,6 +69,9 @@ public class OrderDaoImpl implements OrderDao {
         order.setStatus(Order.Status.valueOf(rs.getString("status")));
         order.setUser(userDao.findById(rs.getLong("user_id")));
         order.setTotalCost(rs.getBigDecimal("total_cost"));
+        order.setItems(orderItemDao.findByOrderId(rs.getLong("id")));
         return order;
     }
+
+
 }

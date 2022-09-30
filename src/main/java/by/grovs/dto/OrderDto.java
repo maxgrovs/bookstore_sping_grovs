@@ -3,23 +3,26 @@ package by.grovs.dto;
 import by.grovs.entity.Order;
 import by.grovs.entity.OrderItem;
 import by.grovs.entity.User;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-
+@Getter
 public class OrderDto {
 
-    private Long id;
+
     private BigDecimal totalCost;
     private List<OrderItem> items;
 
+    private Long id;
     private String userFullName;
     private String status;
 
 
     public static OrderDto toDto(Order order) {
         return new OrderDto()
+                .setId(order.getId())
                 .setUserFullName(order.getUser().getFirstName() + " " + order.getUser().getLastName())
                 .setStatus(order.getStatus().name());
     }
@@ -36,5 +39,8 @@ public class OrderDto {
         return this;
     }
 
-
+    public OrderDto setId(Long id) {
+        this.id = id;
+        return this;
+    }
 }
