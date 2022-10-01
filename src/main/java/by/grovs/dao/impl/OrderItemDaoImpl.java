@@ -22,6 +22,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
 
     @Override
     public OrderItem findById(Long id) {
+
         return null;
     }
 
@@ -48,7 +49,7 @@ public class OrderItemDaoImpl implements OrderItemDao {
 
     @Override
     public List<OrderItem> findByOrderId(Long id) {
-        return jdbcTemplate.query("SELECT * FROM order_items WHERE id = ?", this::mapRow, id);
+        return jdbcTemplate.query("SELECT * FROM order_items WHERE order_id = ?", this::mapRow, id);
     }
 
     private OrderItem mapRow(ResultSet resultSet, int i) throws SQLException {

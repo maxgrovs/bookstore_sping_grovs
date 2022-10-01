@@ -19,6 +19,11 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
+    public List<OrderItem> findByOrderId(Long id) {
+        return orderItemDao.findByOrderId(id);
+    }
+
+    @Override
     public OrderItem findById(Long id) {
         OrderItem orderItem = orderItemDao.findById(id);
         return orderItem;
@@ -44,4 +49,6 @@ public class OrderItemServiceImpl implements OrderItemService {
     public void delete(Long id) {
 
     }
+
+
 }

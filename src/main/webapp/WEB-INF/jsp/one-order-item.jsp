@@ -1,12 +1,11 @@
-<jsp:useBean id="order" scope="request" type="by.grovs.entity.Order"/>
-
+<%--@elvariable id="item" type="by.grovs.entity.OrderItem"--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 
 
 <head>
-    <title>Order List</title>
+    <title>Items List</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -27,34 +26,28 @@
 </head>
 <body>
 
-<h1>Order </h1>
+<h1>Item </h1>
 <table>
     <%
 
     %>
     <tr>
         <th>ID</th>
-        <th>User</th>
-        <th>Items</th>
-        <th>Status</th>
+        <th>Book</th>
+
     </tr>
 
     <tr>
-        <td>${order.id}</td>
-        <td>${order.user.firstName}</td>
-<%--        <td>${order.author}</td>--%>
-<%--        <td>${order.date}</td>--%>
-<%--        <td>${order.cost} $</td>--%>
+        <td>${item.id}</td>
+        <td>${item.book.name}</td>
 
-        <td>
 
-        </td>
     </tr>
 
 
 </table>
 
-<a href="book-store?command=update_book_form&id=${order.id}">Edit</a>
+<%--<a href="book-store?command=update_book_form&id=${order.id}">Edit</a>--%>
 
 </body>
 </html>

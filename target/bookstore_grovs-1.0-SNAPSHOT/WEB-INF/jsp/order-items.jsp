@@ -46,7 +46,7 @@
             <td>${orderItem.book.name}</td>
             <td>${orderItem.quantity}</td>
                 <%--            <td>${order.status.name()}</td>--%>
-            
+
         </tr>
     </c:forEach>
 

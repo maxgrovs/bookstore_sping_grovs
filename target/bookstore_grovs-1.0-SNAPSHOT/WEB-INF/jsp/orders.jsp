@@ -39,17 +39,16 @@
 
 
 
+    <%--@elvariable id="orders" type="java.util.List"--%>
+    <%--@elvariable id="order" type="by.grovs.entity.Order"--%>
     <c:forEach var="order" items="${orders}" varStatus="status" step="1">
         <tr>
 
             <td>${order.id}</td>
             <td>${order.user.firstName}</td>
-                <%--        <td>${order.items}</td>--%>
+            <td></td>
             <td>${order.status.name()}</td>
 
-            <td>
-
-            </td>
         </tr>
     </c:forEach>
 
