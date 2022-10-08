@@ -30,8 +30,12 @@
 <h1>Welcome to my awesome book store! </h1>
 
 <tr>
+
+    <br>
     <th><a href="book-store?command=books">Books</a></th>
     <th><a href="book-store?command=users">Users</a></th>
+    <br/>
+    ${message}
 </tr>
 
 

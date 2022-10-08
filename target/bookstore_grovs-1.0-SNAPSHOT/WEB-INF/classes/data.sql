@@ -10,9 +10,9 @@ VALUES ('Onegin', 'A. Pushkin', '798-5-15825-119-2', '2002-10-20', 6),
        ('Anna Karenina', 'Leo Tolstoy', '798-5-32069-660-2', '2004-03-29', 1),
        ('1984', 'George Orwell', '798-5-50907-711-2', '2009-08-21', 5),
        ('ULYSSES', 'James Joyce', '798-5-59510-943-2', '1902-12-23', 100),
-       ('Anna Karenin-6', 'Leo Tolstoy', '798-5-49857-937-2', '1964-06-08', 98),
+       ('Hadji Murat', 'Leo Tolstoy', '798-5-49857-937-2', '1964-06-08', 98),
        ('mu mu', 'Turgenev', '798-5-26560-716-2', '1931-02-08', 6654),
-       ('Anna Karenin-4', 'Leo Tolstoy', '798-5-58154-278-2', '1912-04-01', 454),
+       ('The Cossacks', 'Leo Tolstoy', '798-5-58154-278-2', '1912-04-01', 454),
        ('maskarad', 'Michail Lermontov', '798-5-55569-785-2', '1981-09-09', 3),
        ('Emma', 'J. Osten', '798-5-17105-496-2', '1947-02-19', 55),
        ('Rassvet', 'I. Bezdomniy', '798-5-86226-504-2', '2008-05-14', 43),
@@ -22,12 +22,8 @@ VALUES ('Onegin', 'A. Pushkin', '798-5-15825-119-2', '2002-10-20', 6),
        ('Dracula', 'Bram Stoker', '798-5-99074-378-2', '1953-12-18', 1000),
        ('war and peace', 'Lev Tolstoy', '798-5-53716-255-2', '2004-01-22', 400);
 
-INSERT INTO role (role)
-VALUES ('Admin'),
-       ('Manager'),
-       ('Customer');
 
-INSERT INTO public.users (first_name, last_name, role_id, password)
-VALUES ('Sveta', 'Ivanova', 1, '1'),
-       ('Jhon', 'Dou', 2, '2'),
-       ('Ivan', 'Bezdomniy', 3, '3');
+INSERT INTO public.users (first_name, last_name, role, password)
+VALUES ('Sveta', 'Ivanova', 'ADMIN', '111'),
+       ('Jhon', 'Dou', 'MANAGER', '222'),
+       ('Ivan', 'Bezdomniy', 'CUSTOMER', '333');

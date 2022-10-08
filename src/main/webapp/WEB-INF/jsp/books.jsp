@@ -67,6 +67,10 @@
 
 </table>
 
-<h2> <a href ="book-store">Beck to main page</a>   </h2>
+<h2>
+    <a href="book-store?command=add_book_form">Add</a>
+</h2>
+
+<h2><a href="book-store">Beck to main page</a></h2>
 </body>
 </html>

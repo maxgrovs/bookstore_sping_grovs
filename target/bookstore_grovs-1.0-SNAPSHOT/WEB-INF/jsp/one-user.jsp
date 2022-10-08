@@ -1,4 +1,3 @@
-<jsp:useBean id="user" scope="request" type="by.grovs.entity.User"/>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -51,6 +50,10 @@
 </table>
 
 <a href="book-store?command=update_user_form&id=${user.id}">Edit</a>
+<a href="book-store?command=delete_user&id=${user.id}">Delete</a>
+<br/>
+
+${message}
 
 </body>
 </html>

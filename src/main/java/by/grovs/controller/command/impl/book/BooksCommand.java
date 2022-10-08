@@ -1,4 +1,4 @@
-package by.grovs.controller.command.impl;
+package by.grovs.controller.command.impl.book;
 
 import by.grovs.controller.command.SpringCommand;
 import by.grovs.entity.Book;

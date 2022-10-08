@@ -9,37 +9,36 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceSpringImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserDao dao;
 
     @Autowired
-    public UserServiceSpringImpl(UserDao dao) {
+    public UserServiceImpl(UserDao dao) {
         this.dao = dao;
     }
 
-    @Override
-    public User addUser(User user) {
-        return null;
+    public User create(User user) {
+        return dao.create(user);
     }
 
     @Override
-    public List<User> getAll() {
-        return dao.getUsers();
+    public List<User> findAll() {
+        return dao.findAll();
     }
 
     @Override
-    public User getById(Long id) {
-        return dao.getById(id);
+    public User findById(Long id) {
+        return dao.findById(id);
     }
 
     @Override
-    public User editUser(User user) {
+    public User update(User user) {
         return dao.update(user);
     }
 
     @Override
     public void delete(Long id) {
-
+        dao.delete(id);
     }
 }

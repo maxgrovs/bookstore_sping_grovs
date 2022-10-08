@@ -11,7 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Update User</title>
+    <title>Update Book</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -31,11 +31,16 @@
     </style>
 </head>
 
+
+
 <%--/book-store?command=update-book&id=5&name=Valera--%>
 
 <body>
+<%----post -> for add, update\\\--%>
 <form method="post" action="book-store">
+<%--    --all input fields are parameters--%>
 
+<%--    --input - field for input\\\--%>
     <input type="hidden" name="command" value="update_book">
     <input type="hidden" name="id" value="${requestScope.book.id}">
     <label for="input-name">Name: </label>

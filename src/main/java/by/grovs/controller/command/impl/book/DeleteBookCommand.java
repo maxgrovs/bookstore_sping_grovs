@@ -1,31 +1,33 @@
-package by.grovs.controller.command.impl;
+package by.grovs.controller.command.impl.book;
 
 import by.grovs.controller.command.SpringCommand;
 import by.grovs.entity.Book;
-import by.grovs.entity.User;
 import by.grovs.service.BookService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 
-@Component("update_book_form")
-public class UpdateBookFormCommand implements SpringCommand {
+@Component("delete_book")
+public class DeleteBookCommand implements SpringCommand {
 
     private final BookService bookService;
 
-    public UpdateBookFormCommand(BookService bookService) {
+
+    public DeleteBookCommand(BookService bookService) {
         this.bookService = bookService;
     }
 
     @Override
     public String execute(HttpServletRequest request) {
 
+
         Long id = Long.parseLong(request.getParameter("id"));
-        Book book = bookService.getById(id);
 
-        request.setAttribute("book", book);
+        bookService.delete(id);
+        request.setAttribute("message", "Book has been deleted!");
 
-        return "WEB-INF/jsp/update-book-form.jsp";
+        return "WEB-INF/jsp/main.jsp";
+
 
     }
 }

@@ -1,36 +1,31 @@
-package by.grovs.controller.command.impl;
+package by.grovs.controller.command.impl.book;
 
 import by.grovs.controller.command.SpringCommand;
 import by.grovs.entity.Book;
+import by.grovs.entity.User;
 import by.grovs.service.BookService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 
-@Component("update_book")
-public class UpdateBookCommand implements SpringCommand {
+@Component("update_book_form")
+public class UpdateBookFormCommand implements SpringCommand {
 
     private final BookService bookService;
 
-
-    public UpdateBookCommand(BookService bookService) {
+    public UpdateBookFormCommand(BookService bookService) {
         this.bookService = bookService;
     }
 
     @Override
     public String execute(HttpServletRequest request) {
 
-
         Long id = Long.parseLong(request.getParameter("id"));
         Book book = bookService.getById(id);
-        book.setName(request.getParameter("name"));
 
-        Book updated = bookService.editBook(book);
-        request.setAttribute("book", updated);
-        request.setAttribute("message", "User has been updated!");
+        request.setAttribute("book", book);
 
-        return "WEB-INF/jsp/one-book.jsp";
-
+        return "WEB-INF/jsp/update-book-form.jsp";
 
     }
 }

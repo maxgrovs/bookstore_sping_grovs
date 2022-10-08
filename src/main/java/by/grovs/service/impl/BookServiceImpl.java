@@ -11,12 +11,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-public class BookServiceSpringImpl implements BookService {
+public class BookServiceImpl implements BookService {
 
     private final BookDao dao;
 
     @Autowired
-    public BookServiceSpringImpl(@Qualifier("bookDaoSpringImpl") BookDao dao) {
+    public BookServiceImpl(@Qualifier("bookDaoImpl") BookDao dao) {
         this.dao = dao;
     }
 
