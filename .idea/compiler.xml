@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="bookstore_sping_grovs" />
+        <module name="bookstore_grovs" />
       </profile>
     </annotationProcessing>
   </component>

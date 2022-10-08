@@ -1,8 +1,12 @@
 package by.grovs.dao.impl;
 
 import by.grovs.dao.BookDao;
+import by.grovs.dao.UserDao;
 import by.grovs.entity.Book;
 import by.grovs.service.Util;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,8 @@ import java.util.Optional;
 
 @Repository
 public class BookDaoImpl implements BookDao {
+
+
 
     private static final Logger log = LogManager.getLogger(BookDaoImpl.class);
 

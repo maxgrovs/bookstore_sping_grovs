@@ -2,7 +2,9 @@ package by.grovs.service;
 import java.util.List;
 
 public interface AbstractService<T, L> {
-    
+
+
+
     T findById(L id);
 
     List<T> findAll();

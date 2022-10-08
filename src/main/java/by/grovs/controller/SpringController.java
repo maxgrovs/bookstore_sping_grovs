@@ -19,6 +19,8 @@ public class SpringController extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
+
+
         context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
     }

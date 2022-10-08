@@ -1,12 +1,12 @@
 #Bookstore by Grovs
 
-#module2_jdbc_template
+#module4_jpa
 
-- ###add Spring JDBC (JdbcTemplate) to Dao layout
-- ###implement CRUD for User and Book entity:
-  + [ ] create
-  + [x] read
-  + [x] update
-  + [ ] delete
+- ###add JPA to Dao layout
+- ###implement DAO on JPA (hibernate):
+  + [ ] bookDao
+  + [ ] orderDao
+  + [ ] userDao
+  + [ ] orderItemDao
     
                        
