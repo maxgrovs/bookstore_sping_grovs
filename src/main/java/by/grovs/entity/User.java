@@ -1,36 +1,32 @@
 package by.grovs.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
-
+@Entity
+@Table(name = "users")
 @Data
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column (name = "last_name")
     private String lastName;
-    private Role role;
+
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public User() {
     }
-
-    public User(long id, String firstName, String lastName, Role role, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.role = role;
-        this.password = password;
-    }
-
-    public User(long id, String firstName, String lastName, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-    }
-
 
     public enum Role {
 

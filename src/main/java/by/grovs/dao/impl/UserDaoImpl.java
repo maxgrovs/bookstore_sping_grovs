@@ -3,6 +3,9 @@ package by.grovs.dao.impl;
 import by.grovs.dao.UserDao;
 import by.grovs.entity.User;
 import by.grovs.service.Util;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,6 +19,8 @@ import java.util.Optional;
 
 @Repository
 public class UserDaoImpl implements UserDao {
+
+    EntityManager entityManager = factory.createEntityManager();
 
     private static final Logger log = LogManager.getLogger(UserDaoImpl.class);
     public static final String DELETE_USER = "UPDATE users SET deleted = true WHERE id = ?";
@@ -63,7 +68,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> findAll() {
 
-        return jdbcTemplate.query(FIND_ALL, this::getUser);
+       // return jdbcTemplate.query(FIND_ALL, this::getUser);
+
+        return  entityManager.createQuery("from User", User.class).getResultList();
     }
 
 
